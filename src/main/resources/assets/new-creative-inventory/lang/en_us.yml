@@ -1,0 +1,112 @@
+plastoid501:
+  newItemGroup:
+    buildingBlocks: Building Blocks
+    coloredBlocks: Colored Blocks
+    natural: Natural Blocks
+    functional: Functional Blocks
+    redstone: Redstone Blocks
+    hotbar: Saved Hotbars
+    search: Search Items
+    tools: Tools & Utilities
+    combat: Combat
+    foodAndDrink: Food & Drinks
+    ingredients: Ingredients
+    spawnEggs: Spawn Eggs
+    op: Operator Utilities
+    inventory: Survival Inventory
+painting:
+  dimensions: "%sx%s"
+  minecraft:
+    alban:
+      author: Kristoffer Zetterstrand
+      title: Albanian
+    aztec:
+      author: Kristoffer Zetterstrand
+      title: de_aztec
+    aztec2:
+      author: Kristoffer Zetterstrand
+      title: de_aztec
+    bomb:
+      author: Kristoffer Zetterstrand
+      title: Target Successfully Bombed
+    burning_skull:
+      author: Kristoffer Zetterstrand
+      title: Skull On Fire
+    bust:
+      author: Kristoffer Zetterstrand
+      title: Bust
+    courbet:
+      author: Kristoffer Zetterstrand
+      title: Bonjour Monsieur Courbet
+    creebet:
+      author: Kristoffer Zetterstrand
+      title: Creebet
+    donkey_kong:
+      author: Kristoffer Zetterstrand
+      title: Kong
+    earth:
+      author: Mojang
+      title: Earth
+    fighters:
+      author: Kristoffer Zetterstrand
+      title: Fighters
+    fire:
+      author: Mojang
+      title: Fire
+    graham:
+      author: Kristoffer Zetterstrand
+      title: Graham
+    kebab:
+      author: Kristoffer Zetterstrand
+      title: Kebab med tre pepperoni
+    match:
+      author: Kristoffer Zetterstrand
+      title: Match
+    pigscene:
+      author: Kristoffer Zetterstrand
+      title: Pigscene
+    plant:
+      author: Kristoffer Zetterstrand
+      title: Paradisträd
+    pointer:
+      author: Kristoffer Zetterstrand
+      title: Pointer
+    pool:
+      author: Kristoffer Zetterstrand
+      title: The Pool
+    sea:
+      author: Kristoffer Zetterstrand
+      title: Seaside
+    skeleton:
+      author: Kristoffer Zetterstrand
+      title: Mortal Coil
+    skull_and_roses:
+      author: Kristoffer Zetterstrand
+      title: Skull and Roses
+    stage:
+      author: Kristoffer Zetterstrand
+      title: The Stage Is Set
+    sunset:
+      author: Kristoffer Zetterstrand
+      title: sunset_dense
+    void:
+      author: Kristoffer Zetterstrand
+      title: The void
+    wanderer:
+      author: Kristoffer Zetterstrand
+      title: Wanderer
+    wasteland:
+      author: Kristoffer Zetterstrand
+      title: Wasteland
+    water:
+      author: Mojang
+      title: Water
+    wind:
+      author: Mojang
+      title: Wind
+    wither:
+      author: Mojang
+      title: Wither
+  random: Random variant
+
+

@@ -1,12 +1,14 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "me.fallenbreath.template_mod.mixins",
+  "package": "net.plastoid501.nci.mixin",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
-    "MinecraftServerMixin"
   ],
   "client": [
+    "CreativeInventoryScreenMixin",
+    "DecorationItemMixin",
+    "SuspiciousStewItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

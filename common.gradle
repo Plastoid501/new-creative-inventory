@@ -27,7 +27,12 @@ configurations {
 dependencies {
 	// loom
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	if (mcVersion <= 11402) {
+		mappings "net.fabricmc:yarn:${project.yarn_mappings}"
+	} else {
+		mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	}
+
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// runtime mods
@@ -41,10 +46,12 @@ dependencies {
 //	include(modImplementation(fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)))
 //	include(modImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}"))
 //	include(annotationProcessor(implementation("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))
+
+	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))
 }
 
-String MIXIN_CONFIG_PATH = 'template_mod.mixins.json'
-String LANG_DIR = 'assets/template_mod/lang'
+String MIXIN_CONFIG_PATH = 'new-creative-inventory.mixins.json'
+String LANG_DIR = 'assets/new-creative-inventory/lang'
 JavaVersion JAVA_COMPATIBILITY
 if (mcVersion >= 12005) {
 	JAVA_COMPATIBILITY = JavaVersion.VERSION_21
@@ -199,7 +206,7 @@ license {
 	}
 	ext {
 		name = project.mod_name
-		author = 'Fallen_Breath'
+		author = 'Plastoid501'
 		year = Calendar.getInstance().get(Calendar.YEAR).toString()
 	}
 }

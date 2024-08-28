@@ -1,0 +1,18 @@
+plastoid501:
+  newItemGroup:
+    buildingBlocks: 建築ブロック
+    coloredBlocks: 色付きブロック
+    natural: 天然ブロック
+    functional: 機能的ブロック
+    redstone: レッドストーン系ブロック
+    hotbar: 保存したホットバー
+    search: アイテム検索
+    tools: 道具と実用品
+    combat: 戦闘
+    foodAndDrink: 食べ物と飲み物
+    ingredients: 材料
+    spawnEggs: スポーンエッグ
+    op: 管理者用アイテム
+    inventory: サバイバルインベントリ
+painting:
+  random: ランダムな絵画

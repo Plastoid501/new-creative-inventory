@@ -4,29 +4,28 @@
   "version": "${version}",
 
   "name": "${name}",
-  "description": "Template for my fabric mods",
+  "description": "This mod allows the ver1.19.3 creative inventory layout to be used with versions lower than ver1.19.3.",
   "authors": [
-    "Fallen_Breath"
+    "Plastoid501"
   ],
   "contact": {
-    "homepage": "https://modrinth.com",
-    "sources": "https://github.com/Fallen-Breath/fabric-mod-template"
+    "homepage": "https://github.com/Plastoid501/",
+    "sources": "https://github.com/Plastoid501/new-creative-inventory"
   },
 
-  "icon": "assets/template_mod/icon.png",
+  "icon": "assets/new-creative-inventory/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "me.fallenbreath.template_mod.TemplateMod"
+      "net.plastoid501.nci.NewCreativeInventory"
     ]
   },
   "mixins": [
-    "template_mod.mixins.json"
+    "new-creative-inventory.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": ">=0.11.4",
     "minecraft": "${minecraft_dependency}"
   }
 }
