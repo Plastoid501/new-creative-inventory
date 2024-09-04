@@ -95,7 +95,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@Mixin(CreativeInventoryScreen.class)
+@Mixin(value = CreativeInventoryScreen.class, priority = 900)
 //#if MC <= 11502
 //$$ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScreen<CreativeInventoryScreen.CreativeContainer>
 //#else
@@ -118,8 +118,6 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
     @Shadow protected abstract void renderTabIcon(MatrixStack matrices, ItemGroup group);
     //#endif
 
-    @Shadow protected abstract boolean isClickInTab(ItemGroup itemGroup, double d, double e);
-
     @Unique private static final Identifier TEXTURE = new Identifier("textures/gui/container/creative_inventory/tabs.png");
     @Unique private static final int TAB_WIDTH = 26;
     @Unique private static final int TAB_HEIGHT = 32;
@@ -138,6 +136,7 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
     @Unique private static final ItemGroup SPAWN_EGGS;
     @Unique private static final ItemGroup OPERATOR;
     @Unique private static final ItemGroup INVENTORY2;
+    @Unique private static int postSelectedTab = 0;
 
     public CreativeInventoryScreenMixin(
             //#if MC <= 11402
@@ -291,9 +290,25 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
     //#else
     protected Text modifyDrawForeground3(ItemGroup instance)
     {
+        postSelectedTab = selectedTab;
+        selectedTab = 0;
         return this.getNewItemGroup(instance).getDisplayName();
     }
     //#endif
+
+    @Inject(method = "drawForeground", at = @At(value = "RETURN"))
+    protected void modifyDrawForeground4(
+            //#if MC >= 11600
+            MatrixStack matrices,
+            //#endif
+            int mouseX, int mouseY, CallbackInfo ci
+    )
+    {
+        if (postSelectedTab != 0) {
+            selectedTab = postSelectedTab;
+            postSelectedTab = 0;
+        }
+    }
 
     @Redirect(method = "mouseClicked", at = @At(value = "FIELD", target = "Lnet/minecraft/item/ItemGroup;GROUPS:[Lnet/minecraft/item/ItemGroup;"))
     public ItemGroup[] modifyMouseClicked1()
@@ -515,18 +530,18 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
         return groups;
     }
 
-    @Inject(method = "drawBackground", at = @At(value = "HEAD"), cancellable = true)
-    private void modifyDrawBackground(
+    @Override
+    public void drawBackground(
             //#if MC >= 11600
             MatrixStack matrices,
             //#endif
             float delta,
             int mouseX,
-            int mouseY,
-            CallbackInfo ci
+            int mouseY
     )
     {
-        ci.cancel();
+        postSelectedTab = selectedTab;
+        selectedTab = 0;
         //#if MC <= 11402
         //$$ GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         //$$ GuiLighting.enableForItems();
@@ -538,8 +553,8 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
         //#else
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         //#endif
-        ItemGroup itemGroup = GROUPS[selectedTab];
-        NewItemGroup itemGroup2 = NewItemGroups.GROUPS[selectedTab];
+        ItemGroup itemGroup = GROUPS[postSelectedTab];
+        NewItemGroup itemGroup2 = NewItemGroups.GROUPS[postSelectedTab];
 
         int k;
         for (ItemGroup itemGroup3 : GROUPS)
@@ -553,7 +568,7 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
             RenderSystem.setShaderTexture(0, TEXTURE);
             //#endif
 
-            if (itemGroup3.getIcon().getCount() - 1 != selectedTab)
+            if (itemGroup3.getIcon().getCount() - 1 != postSelectedTab)
             {
                 //#if MC <= 11404
                 //$$ this.method_2468(itemGroup3);
@@ -661,18 +676,9 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
                     //#endif
             );
         }
-    }
 
-    @Override
-    public void drawBackground(
-            //#if MC >= 11600
-            MatrixStack matrices,
-            //#endif
-            float delta,
-            int mouseX,
-            int mouseY
-    )
-    {
+        selectedTab = postSelectedTab;
+        postSelectedTab = 0;
     }
 
     @ModifyConstant(
@@ -877,6 +883,19 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
         {
             j.set(j.get() - newItemGroup.getColumn());
         }
+    }
+
+    @Redirect(
+            //#if MC <= 11404
+            //$$ method = "method_2468",
+            //#else
+            method = "renderTabIcon",
+            //#endif
+            at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/screen/ingame/CreativeInventoryScreen;selectedTab:I")
+    )
+    private int modifyRenderTabIcon0()
+    {
+        return postSelectedTab;
     }
 
     @Redirect(

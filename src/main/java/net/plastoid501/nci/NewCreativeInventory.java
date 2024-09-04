@@ -42,7 +42,7 @@ public class NewCreativeInventory implements ModInitializer
 			//#endif
 
 	public static final String MOD_ID = "new-creative-inventory";
-	public static String MOD_VERSION = "1.1.0";
+	public static String MOD_VERSION = "1.1.1";
 	public static String MOD_NAME = "New Creative Inventory";
 
 	@Override
