@@ -453,7 +453,7 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
             int y,
             CallbackInfo ci,
             //#if MC <= 11502
-            //$$ @Local(ordinal = 1) LocalRef<List<String>> localRef
+            //$$ @Local(ordinal = 0) LocalRef<List<String>> localRef
             //#else
             @Local(ordinal = 1) LocalRef<List<Text>> localRef
             //#endif
